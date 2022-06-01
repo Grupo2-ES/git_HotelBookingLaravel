@@ -27,9 +27,9 @@
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="all-staff.html">All Staff </a></li>
-                        <li><a href="edit-staff.html"> Edit Staff </a></li>
-                        <li><a href="add-staff.html"> Add Staff </a></li>
+                        <li><a href="{{ route('form/allEmployess/page') }}">All Employees </a></li>
+                        <li><a href="{{ url('form/employee/edit') }}"> Edit Employees </a></li>
+                        <li><a href="{{ route('form/addEmployee/page') }}"> Add Employees </a></li>
                     </ul>
                 </li>
 
