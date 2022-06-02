@@ -47,8 +47,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <a href="{{ \URL::to('/')}}" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Your Site</span>
+      <img src="https://www.ahstatic.com/photos/5451_ho_00_p_1024x768.jpg" alt="Admin" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">HotelBooking</span>
     </a>
 
 
