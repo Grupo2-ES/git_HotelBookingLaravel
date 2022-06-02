@@ -16,11 +16,12 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('bkg_id');
-            $table->string('name')->nullable();
-            $table->string('room_type')->nullable();
-            $table->string('total_people')->nullable();
-            $table->string('arrival_date')->nullable();
-            $table->string('depature_date')->nullable();
+            $table->string('customer_id')->nullable();
+            $table->string('room_id')->nullable();
+            $table->string('total_adults')->nullable();
+            $table->string('total_children')->nullable();
+            $table->string('chekin_date')->nullable();
+            $table->string('chekout_date')->nullable();
             $table->string('email')->nullable();
             $table->string('ph_number')->nullable();
             $table->string('message')->nullable();
