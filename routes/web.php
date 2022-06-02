@@ -95,3 +95,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
+Route::view('/employe', 'employe');
