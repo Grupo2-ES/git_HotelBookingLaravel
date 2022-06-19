@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.addroom')
+@extends('sidebar.allroom')
 @endsection
 @section('content')
     {!! Toastr::message() !!}
@@ -9,90 +9,102 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Add Room</h3>
+                        <div class="mt-5">
+                            <h4 class="card-title float-left mt-2">All Rooms</h4>
+                            <a href="{{ route('form/addroom/page')}}" class="btn btn-primary float-right veiwbutton">Add Room</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('form/room/save')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row formtype">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <select class="form-control @error('name') is-invalid @enderror" id="sel1" name="name" value="{{old('name')}}">
-                                        <option selected disabled> --Select Name-- </option>
-                                        @foreach ($user as $users)
-                                            <option value="{{ $users->name}}">{{$users->name}}</option>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <table class="datatable table table-stripped table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking ID</th>
+                                            <th>Name</th>
+                                            <th>Room Type</th>
+                                            <th>AC/NON-AC</th>
+                                            <th>Bed Count</th>
+                                            <th>Charges For cancellation</th>
+                                            <th>Ph.Number</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($allRooms as $rooms )
+                                        <tr>
+                                            <td hidden class="id">{{$rooms->id}}</td>
+                                            <td>{{$rooms->bkg_room_id}}</td>
+                                            <td>{{$rooms->room_type}}</td>
+                                            <td>{{$rooms->ac_non_ac}}</td>
+                                            <td>{{$rooms->bed_count}}</td>
+                                            <td>{{$rooms->charges_for_cancellation}}</td>
+                                            <td>{{$rooms->phone_number}}</td>
+                                            <td>
+                                                <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a></div>
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v ellipse_color"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="{{url('form/room/edit'.$rooms->bkg_room_id)}}">
+                                                            <i class="fas fa-pencil-alt m-r-5"></i> Edit
+                                                        </a>
+                                                        <a class="dropdown-item delete_asset" href="#" data-toggle="modal" data-target="#delete_asset">
+                                                            <i class="fas fa-trash-alt m-r-5"></i> Delete
+                                                        </a> 
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Room Type</label>
-                                    <select class="form-control @error('room_type') is-invalid @enderror" id="room_type" name="room_type">
-                                        <option selected disabled> --Select Room Type-- </option>
-                                            @foreach ($data as $items)
-                                            <option value="{{$items->room_name}}">{{$items->room_name}}</option>
-                                            @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>AC/NON-AC</label>
-                                    <select class="form-control @error('ac_non_ac') is-invalid @enderror" id="ac_non_ac" name="ac_non_ac">
-                                        <option disabled selected>--Select--</option>
-                                        <option value="AC">AC</option>
-                                        <option value="NON-AC">NON-AC</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Bed Count</label>
-                                    <select class="form-control @error('bed_count') is-invalid @enderror" id="bed_count" name="bed_count">
-                                        <option disabled selected>--Select--</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Charges For Cancellation</label>
-                                    <select class="form-control @error('charges_for_cancellation') is-invalid @enderror" id="charges_for_cancellation" name="charges_for_cancellation">
-                                        <option disabled selected>--Select--</option>
-                                        <option value="Free">Free</option>
-                                        <option value="5% Before 24h">5% Before 24h</option>
-                                        <option value="No Cancellation Allowed">No Cancellation Allowed</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Phone Number</label>
-                                    <input type="number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" value="{{old('phone_number')}}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Message</label>
-                                    <textarea class="form-control @error('message') is-invalid @enderror" rows="1.5" id="message" name="message" value="{{old('message')}}"></textarea>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary buttonedit ml-2">Save</button>
-                <button type="button" class="btn btn-primary buttonedit">Cancel</button>
-            </form>
+            </div>
         </div>
+        
+        {{-- delete model --}}
+        <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <form action="{{ route('form/room/delete') }}" method="POST">
+                            @csrf
+                            <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
+                            <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+                            <div class="m-t-20">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                <input class="form-control" type="hidden" id="e_id" name="id" value="">
+                                <input class="form-control" type="hidden" id="e_fileupload" name="fileupload" value="">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- end delete model --}}
     </div>
+    @section('script')
+        {{-- delete model --}}
+        <script>
+            $(document).on('click','.delete_asset',function()
+            {
+                var _this = $(this).parents('tr');
+                $('#e_id').val(_this.find('.id').text());
+                $('#e_fileupload').val(_this.find('.fileupload').text());
+            });
+        </script>
+    @endsection
 @endsection
