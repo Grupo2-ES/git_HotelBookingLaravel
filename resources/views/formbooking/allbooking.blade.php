@@ -85,6 +85,36 @@
                 </div>
             </div>
         </div>
-        {{-- Falta adicionar o 3º Sprint --}}
-
+        {{-- Model delete --}}
+        <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('form/booking/delete') }}" method="POST">
+                        @csrf
+                        <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
+                            <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+                            <div class="m-t-20">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                <input class="form-control" type="hidden" id="e_id" name="id" value="">
+                                <input class="form-control" type="hidden" id="e_fileupload" name="fileupload" value="">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- End Model delete --}}
+    </div>
+    @section('script')
+    {{-- delete model --}}
+    <script>
+        $(document).on('click','.bookingDelete',function()
+        {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_fileupload').val(_this.find('.fileupload').text());
+        });
+    </script>
+    @endsection
 @endsection
