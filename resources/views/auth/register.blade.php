@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.costumer_app_register')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <h2 class="card-header">{{ __('Create an account') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
