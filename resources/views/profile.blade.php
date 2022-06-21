@@ -269,14 +269,14 @@
                                                     <label>Confirm Password</label>
                                                     <input type="password" class="form-control"> </div>
                                                 <button class="btn btn-primary" type="submit">Save Changes</button>
-                                                    <script>
-                                                        $(`#click`).on(`click`,funcion(){
-                                                            Swal.fire(
-                                                               'Pedido executado!',
-                                                               'A sua Password foi atualizada com sucesso!',
-                                                               'success'
-                                                            )
-                                                        )}
+                                                <script>
+                                                    $(`#click`).on(`click`,funcion()
+                                                        Swal.fire(
+                                                            'Pedido executado!',
+                                                            'A sua Password foi atualizada com sucesso!',
+                                                            'success'
+                                                        )
+                                                    )
                                                      </script>
                                             </form>
                                         </div>
