@@ -276,7 +276,6 @@
                                                                'A sua Password foi atualizada com sucesso!',
                                                                'success'
                                                             )
-
                                                         )}
                                                      </script>
                                             </form>
