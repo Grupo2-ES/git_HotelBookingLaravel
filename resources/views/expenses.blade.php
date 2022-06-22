@@ -48,5 +48,10 @@
       </form>
     </div>
     <script src="../../vendors/expenses/script.js"></script>
+
+    <div class="card-body"><div class="col-md-12 text-center">
+      <a href="{{ URL::previous() }}">Go Back</a>
+    </div> </div>
+
   </body>
 </html
